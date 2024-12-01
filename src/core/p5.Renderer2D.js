@@ -68,9 +68,30 @@ class Renderer2D extends Renderer {
 
     // Set and return p5.Element
     this.wrappedElt = new Element(this.elt, this._pInst);
+
+    // add set/get for actual properties on context
+    const ctx = this.drawingContext;
+    Object.defineProperties(this.states, {
+      textAlign: {
+        get() {
+          return ctx.textAlign;
+        },
+        set(x) {
+          ctx.textAlign = x;
+        },
+      },
+      textBaseline: {
+        get() {
+          return ctx.textBaseline;
+        },
+        set(x) {
+          ctx.textBaseline = x;
+        },
+      },
+    });
   }
 
-  remove(){
+  remove() {
     this.wrappedElt.remove();
     this.wrappedElt = null;
     this.canvas = null;
@@ -1468,7 +1489,7 @@ class Renderer2D extends Renderer {
   }
 }
 
-function renderer2D(p5, fn){
+function renderer2D(p5, fn) {
   /**
    * p5.Renderer2D
    * The 2D graphics canvas renderer class.

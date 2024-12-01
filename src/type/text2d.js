@@ -245,7 +245,7 @@ function text2d(p5, fn) {
         }
         this.states.textBaseline = v;
       }
-      return this._applyTextProperties();
+      return this._pInst;// this._applyTextProperties(); // don't need
     }
     // the getter
     return {
@@ -768,8 +768,7 @@ function text2d(p5, fn) {
 
     for (let i = 0; i < lines.length; i++) {
       switch (textAlign) {
-        case fn.START:
-          throw new Error('textBounds: START not yet supported for textAlign'); // default to LEFT
+        case fn.START: // fall-through to LEFT for now
         case fn.LEFT:
           adjustedX = x;
           break;
@@ -1116,8 +1115,8 @@ function text2d(p5, fn) {
 
     // set these after the font so they're not overridden
     this.drawingContext.direction = this.states.direction;
-    this.drawingContext.textAlign = this.states.textAlign;
-    this.drawingContext.textBaseline = this.states.textBaseline;
+    // this.drawingContext.textAlign = this.states.textAlign;
+    // this.drawingContext.textBaseline = this.states.textBaseline;
 
     // set manually as (still) not fully supported as part of font-string
     let stretch = this.states.fontStretch;

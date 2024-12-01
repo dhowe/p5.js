@@ -38,8 +38,6 @@ class Renderer {
       textLeading: 15,
       leadingSet: false,
       textSize: 12,
-      textAlign: constants.LEFT,
-      textBaseline: constants.BASELINE,
       textWrap: constants.WORD,
 
       // added v2.0
@@ -49,7 +47,8 @@ class Renderer {
       lineHeight: constants.NORMAL,
       fontVariant: constants.NORMAL,
       direction: 'inherit'
-    };
+    };    
+
     this._pushPopStack = [];
     // NOTE: can use the length of the push pop stack instead
     this._pushPopDepth = 0;
