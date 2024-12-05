@@ -432,7 +432,7 @@ function font(p5, fn) {
       let fonts = Typr.parse(result);
       
       if (fonts.length !== 1 || fonts[0].cmap === undefined) {
-        throw Error(23);
+        throw Error('Parse Error');
       }
 
       // make sure we have a valid name
