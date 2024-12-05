@@ -446,7 +446,7 @@ function font(p5, fn) {
       console.warn('Failed to parse font data:', err);
       try {
         // create a FontFace object and pass it to p5.Font
-        console.log(`Retrying '${name}' without font-data: '${path}'`);
+        console.log(`Retrying '${name ?? 'unknown'}' without font-data: '${path}'`);
         pfont = await create(this, name, path, descriptors);
       }
       catch (err) {
