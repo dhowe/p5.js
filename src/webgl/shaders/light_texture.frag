@@ -17,7 +17,7 @@ void main(void) {
       // Textures come in with premultiplied alpha. To apply tint and still have
       // premultiplied alpha output, we need to multiply the RGB channels by the
       // tint RGB, and all channels by the tint alpha.
-      ? TEXTURE(uSampler, vVertTexCoord) * vec4(uTint.rgb/255., 1.) * (uTint.a/255.)
+      ? TEXTURE(uSampler, vVertTexCoord) * vec4(uTint.rgb, 1.) * (uTint.a)
       // Colors come in with unmultiplied alpha, so we need to multiply the RGB
       // channels by alpha to convert it to premultiplied alpha.
       : vec4(vColor.rgb * vColor.a, vColor.a);

@@ -1027,6 +1027,11 @@ class Shader {
       ) {
         return;
       } else {
+        if (!Array.isArray(data) && !(data instanceof TypedArray)) {
+          throw new Error(
+            `Uniform ${uniformName} is an array, but the data passed in is not an array or typed array, it is ${data}`
+          );
+        }
         uniform._cachedData = data.slice(0);
       }
     } else if (uniform._cachedData && uniform._cachedData === data) {

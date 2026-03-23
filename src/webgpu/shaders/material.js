@@ -381,7 +381,7 @@ fn main(input: FragmentInput) -> @location(0) vec4<f32> {
 
   let color = select(
     input.vColor,
-    textureSample(uSampler, uSampler_sampler, input.vTexCoord) * (material.uTint/255.0),
+    textureSample(uSampler, uSampler_sampler, input.vTexCoord) * (material.uTint),
     material.isTexture == 1
   ); // TODO: check isTexture and apply tint
   var inputs = Inputs(

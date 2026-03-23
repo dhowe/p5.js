@@ -132,7 +132,7 @@ export class Renderer3D extends Renderer {
     this.states._useShininess = 1;
     this.states._useMetalness = 0;
 
-    this.states.tint = [255, 255, 255, 255];
+    this.states.tint = new Color([255, 255, 255, 255]);
 
     this.states.constantAttenuation = 1;
     this.states.linearAttenuation = 0;
@@ -721,7 +721,7 @@ export class Renderer3D extends Renderer {
     this.states.setValue("enableLighting", false);
 
     //reset tint value for new frame
-    this.states.setValue("tint", [255, 255, 255, 255]);
+    this.states.setValue("tint", new Color([1,1,1,1]));
 
     //Clear depth every frame
     this._resetBuffersBeforeDraw()
@@ -1486,7 +1486,17 @@ export class Renderer3D extends Renderer {
     // works differently and is global p5 state. If the p5 state has
     // been cleared, we also need to clear the value in uSampler to match.
     fillShader.setUniform("uSampler", this.states._tex || empty);
-    fillShader.setUniform("uTint", this.states.tint);
+
+    if (!(this.states.tint instanceof Color)) {
+      console.error('BAD TINT:',
+       this.states.tint, typeof this.states.tint, Array.isArray(this.states.tint));
+      }
+    
+    if (typeof this.states.tint.array !== 'function') {
+      throw Error('BAD TINT (missing array method):');
+    }
+    // if tint is a color object, convert it to an array before passing to shader
+    fillShader.setUniform("uTint", this.states.tint.array());
 
     fillShader.setUniform("uHasSetAmbient", this.states._hasSetAmbient);
     fillShader.setUniform("uAmbientMatColor", this.states.curAmbientColor);

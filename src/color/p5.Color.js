@@ -186,7 +186,7 @@ class Color {
           }
           mappedVals.push(1);
         }else{
-          throw new Error('Invalid color');
+          throw Error('Invalid color: '+vals+' ('+(typeof vals)+')');
         }
       }else{
         mappedVals = vals;
